@@ -1,64 +1,57 @@
-# 냥발스럽게 — portfolio case studies
+# 냥발스럽게 문제 해결 사례
 
-## 1. Three classes with different interaction rhythms
+## 1. 같은 월드와 다르게 상호작용하는 3개 클래스
 
-**Design contribution:** The Basic, Melee, and Gun cats were planned as distinct ways to interact with the same destructible world rather than simple stat skins.
+**기획 기여:** 기본형, 근접형, 총기형을 단순 능력치 스킨이 아니라 같은 파괴 월드를 서로 다른 리듬으로 경험하는 클래스로 공동 설계했습니다.
 
-- Melee uses combo buffering, directional arcs, shield grab/dash, and close-range area skills.
-- Gun uses aim state, ammo, pooled projectiles, radial fire, and a dual-wield barrage.
-- Class state is isolated in progression/save logic so one class's purchases do not leak into another.
+- 근접형: 콤보 버퍼, 방향성 호 판정, 방패 잡기·돌진, 근거리 범위 스킬
+- 총기형: 조준 상태, 탄약, 풀링 투사체, 방사형 사격과 양손 난사
+- 성장·저장: 한 클래스의 구매가 다른 클래스에 섞이지 않도록 상태 분리
 
-**Evidence:** [melee runtime](Source/Classes/MeleeCatCombatRuntime.cs), [gun runtime](Source/Classes/GunCatCombatRuntime.cs), [class runtime](Source/Classes/PlayerClassRuntime.cs), and the [VFX report](Evidence/CLASS_SKILL_EXTERNAL_VFX_REPORT.md).
+**증거:** [근접 런타임](Source/Classes/MeleeCatCombatRuntime.cs), [총기 런타임](Source/Classes/GunCatCombatRuntime.cs), [클래스 런타임](Source/Classes/PlayerClassRuntime.cs)
 
-## 2. Destruction as a progression and multiplayer system
+## 2. 파괴를 성장과 멀티플레이 규칙으로 연결
 
-**Design contribution:** I co-designed a loop where smashing objects earns currency, unlocks upgrades, and culminates in a building-destruction mode with escalating targets.
+**기획 기여:** 오브젝트 파괴로 재화를 얻고 업그레이드한 뒤 더 큰 건물 목표에 도전하는 루프를 공동 설계했습니다.
 
-**Technical direction:** The director separates the stage ladder from networking so solo and multiplayer can share the same rules. Host-authoritative stage transitions use a last-applied guard to prevent two simultaneous killing blows from advancing twice. Player progression tracks class-specific levels, damage, critical hits, earned gold, and session-only consumables.
+**기술 방향:** 스테이지 규칙과 네트워크를 분리해 솔로와 멀티플레이가 같은 규칙을 공유합니다. 호스트 권한형 전환에는 마지막 적용 단계 가드를 두어 동시 마무리 타격이 두 번 진행되지 않게 했습니다. 플레이어 성장은 클래스별 레벨, 피해, 치명타, 골드와 세션 전용 소모품을 추적합니다.
 
-**Evidence:** [building director](Source/BuildingBreak/BuildingBreakDirector.cs), [player progression](Source/BuildingBreak/BuildingBreakPlayerProgress.cs), and [room capture](media/02_building_break_room.png).
+## 3. 시각적 의미를 유지하는 원격 상태
 
-## 3. Remote state that remains visually meaningful
+**문제:** 네트워크 고양이는 위치만 동기화하면 부족합니다. 이동, 공격 변형, 장비, 스킬, 거대화, 동료와 무기까지 상대 화면에서 의미 있게 보여야 합니다.
 
-**Problem:** A networked cat is more than a position. Remote players need stable locomotion, attack variants, held items, skill effects, giant-scale changes, companions, weapons, and visibility repair after animator changes.
+**결정:** 작은 게임 상태를 직렬화해 원격 프록시에 시각 변화를 적용하고, 중요한 장비 상태는 신뢰 가능한 복구 경로로 보완했습니다. 이름표는 거리에 따라 크기를 조절하고 가려지거나 가독 거리 밖이면 숨깁니다.
 
-**Decision:** Serialize compact gameplay state, apply visual changes on the remote proxy, and send important held-item state through a reliable repair path. Nameplates scale by distance, hide behind occlusion, and disappear beyond the readable range.
+**검증:** 2프로세스에서 소유자와 원격의 Idle, BackWalk, RunForward, Jump, Dash를 비교했습니다. 스킬 1~4를 10회 반복하고 클라이언트·호스트 강제 종료 뒤 생존과 마스터 전환을 검사했습니다.
 
-**Recorded QA:** Two-process evidence compares owner and remote Idle, BackWalk, RunForward, Jump, and Dash states. Skills 1–4 were repeated ten times, and forced client/host exits were tested for survival and master handoff.
+## 4. 저장 경계와 마이그레이션
 
-**Evidence:** [network avatar](Source/Coop/CoopNetworkPlayerAvatar.cs), [nameplate](Source/Coop/CoopNetworkNameplate.cs), and [story/co-op report](Evidence/STORY_COOP_FINAL_REPORT.md).
+**문제:** 스토리 솔로·협동, 세 클래스 업그레이드, 장비, 스테이지, 설정과 전투 임시 아이템은 같은 방식으로 저장되면 안 됩니다.
 
-## 4. Persistence boundaries and migration
+**결정:** 명시적인 키 접두사와 스토리 축을 사용했습니다. 과거 공용 업그레이드는 클래스별 키로 이전하고, 플레이어 소유 성장은 보존하되 한 판 전용 폭탄은 저장하지 않았습니다.
 
-**Problem:** Story solo, story co-op, three class upgrade sets, equipment, stage progress, settings, and temporary battle items should not all persist in the same way.
+## 5. 측정 가능한 무기 부착
 
-**Decision:** Use explicit key prefixes and story axes, migrate older shared upgrades into per-class keys, persist player-owned progression, and keep match-only bombs out of saves. Validation restores captured values after destructive test runs when evidence exists.
+**문제:** 무기마다 피벗과 경계가 달라 같은 손 오프셋을 공유하면 몸을 관통할 수 있습니다. 고양이 성장 크기와 애니메이션도 부착 결과를 바꿉니다.
 
-**Evidence:** [SaveSystem.cs](Source/Core/SaveSystem.cs), [BuildingBreakPlayerProgress.cs](Source/BuildingBreak/BuildingBreakPlayerProgress.cs), and the upgrade-cycle section of the [co-op regression report](Evidence/COOP_REGRESSION_REPORT.md).
+**결정:** 무기마다 안정적인 지오메트리 서명과 부착 프로필을 사용했습니다. 손, 오브젝트 종류, 자세, 간격 결과, 수정 시도와 스크린샷 경로를 기록하고 JSON/CSV로 내보내도록 설계했습니다.
 
-## 5. Weapon attachment as measurable geometry
+## 6. 실패를 지우지 않는 QA
 
-**Problem:** Different props and weapons cannot share one hand offset. Cat growth, animation, mesh bounds, pivots, and long-weapon shapes can all produce body penetration while still appearing “attached.”
+포트폴리오 보고서에 다음 결과를 그대로 남겼습니다.
 
-**Decision:** Give every weapon a stable geometry signature and its own attachment profile. Record hand side, object type, pose, clearance result, correction attempts, and screenshot paths; export the result to JSON/CSV.
+- 2인 실패 화면의 참가자 행이 실제 방 인원보다 많이 생성됨
+- Stage 4 멀티플레이 1% low 성능 목표 미달
+- 기준 스냅샷 전에 실패한 일부 저장값은 안전하게 복원 불가
 
-**Evidence:** [WeaponAttachmentProfile.cs](Source/Core/WeaponAttachmentProfile.cs). This repository does not claim a fresh all-weapon pass; it shows the validation-oriented data model.
+Passed, Failed, NeedsReview, NotValidated를 구분해 불확실성을 성공으로 바꾸지 않았습니다.
 
-## 6. QA that preserves failures
+## 다음 개선 우선순위
 
-The project reports intentionally retain failed or unresolved results:
+- 결과 화면 확장 생성을 멱등하게 만들고 정확한 참가자 행 수 검증
+- Stage 4 협동의 메인 스레드·물리·렌더러 비용 분리 측정
+- 대형 클래스를 전투·표현·저장·네트워크 서비스로 분리
+- 리플렉션 중심 검증을 명시적 테스트 어댑터로 교체
+- 경고 예산과 CI용 EditMode/PlayMode 테스트 세트 도입
+- 라이선스 원본 없이 실행 가능한 작은 수직 슬라이스 제작
 
-- A two-player failure screen generated more participant rows than the actual room size.
-- A Stage 4 multiplayer performance sample missed its 1% low target.
-- Some original save values could not be safely restored because a failed run occurred before the baseline snapshot.
-
-Keeping these results matters. My workflow uses `Passed`, `Failed`, `NeedsReview`, and `NotValidated` so uncertainty does not become a portfolio claim.
-
-## What I would improve next
-
-- Make result-screen extension creation idempotent and assert exact participant-row count
-- Profile and reduce Stage 4 co-op main-thread/physics/renderer cost
-- Split large runtime classes into typed combat, presentation, persistence, and network services
-- Replace remaining reflection-heavy validation helpers with explicit test adapters
-- Establish a warning budget and CI subsets for EditMode/PlayMode tests
-- Produce a smaller redistributable vertical slice without licensed source assets

@@ -1,91 +1,105 @@
 # 냥발스럽게 · CatDream
 
-> AI-assisted destruction action prototype · Unity 6 · three cat classes · story/co-op validation
+> Unity 6 고양이 파괴 액션 · 3개 클래스 · 스토리·협동 모드 · 직접 플레이 QA
 
-![냥발스럽게 title screen](media/01_title.png)
+![냥발스럽게 타이틀 화면](media/01_title.png)
 
-`냥발스럽게` is a Unity 6 action prototype in which cats grow stronger by smashing objects across Seoul-inspired stages. It combines story progression, three playable classes, upgrade/save systems, recruitable companions, and a cooperative building-destruction mode.
+냥발스럽게는 고양이가 서울형 스테이지의 오브젝트와 건물을 파괴하며 성장하는 액션 프로토타입입니다. 3개 클래스, 스토리 진행, 업그레이드와 저장, 동료, 협동 건물 파괴 모드를 결합했습니다.
 
-This is a recruiter-oriented source showcase. The private working project is not reproduced here because it contains third-party packages, service configuration, generated builds, and more than 130GB of assets and validation artifacts.
+이 저장소는 면접관용 선별 소스입니다. 비공개 작업 프로젝트에는 제3자 패키지, 서비스 설정, 생성 빌드와 130GB 이상의 에셋·검증 자료가 있어 전체 프로젝트를 재배포하지 않았습니다.
 
-## My role
+## 면접관 1분 요약
 
-- **Co-planning (about 50%)** with a teammate at **Surge Games / 서지게임즈**
-- Co-designed the destruction loop, Seoul stage progression, class identities, upgrades, companion growth, and cooperative modes
-- Converted features and bugs into goal-based tasks with observable acceptance criteria
-- Directed and reviewed an AI-assisted implementation workflow in Unity
-- Led hands-on QA through public keyboard/mouse input, two-process multiplayer runs, screenshots, logs, numeric checks, and regression reports
+| 항목 | 내용 |
+| --- | --- |
+| 장르 | 3인칭 파괴 액션 / 협동 점수 경쟁 |
+| 엔진 | Unity 6000.3.6f1, URP 17.3, C# |
+| 콘텐츠 | 서울형 6개 스테이지, 스토리, 건물 파괴 전투 |
+| 클래스 | 기본형, 근접형, 총기형 |
+| 주요 시스템 | 전투 스킬, 업그레이드, 저장 마이그레이션, 동료, 무기 부착 |
+| 멀티플레이 | Photon 방 흐름, 원격 아바타, 호스트 권한형 결과 |
+| QA | PlayMode, 개발 빌드 탐침, 호스트·클라이언트 2프로세스 증거 |
+| 공개 범위 | 주요 C# 15개, 테스트 3개, 보고서 3개, 플레이 화면 |
 
-AI accelerated implementation. I am not claiming every line was manually typed; the portfolio focuses on the decisions, integration work, reproducible validation, and code that resulted from that workflow.
+## 나의 역할과 기여
 
-## Project snapshot
+- 서지게임즈 팀원과 파괴 루프, 서울 스테이지, 클래스 정체성, 업그레이드, 동료 성장과 협동 모드를 공동 기획했습니다. 기획 기여도는 약 50%입니다.
+- 기능과 버그를 목표, 정상 조작 경로와 관찰 가능한 합격 조건으로 바꿨습니다.
+- AI 코딩 도구로 구현 속도를 높이고 Unity에서 통합 결과를 검토했습니다.
+- 키보드·마우스 공개 입력, 호스트·클라이언트 2프로세스, 스크린샷, 로그와 수치 비교로 직접 QA했습니다.
 
-| Item | Detail |
-|---|---|
-| Engine | Unity 6000.3.6f1, URP 17.3, C# |
-| Genre | Third-person destruction action / cooperative score attack |
-| Content | Six Seoul-themed stages, story route, building-destruction battle |
-| Classes | Basic, Melee, Gun |
-| Systems | combat skills, upgrades, save migration, companions, weapon attachment |
-| Multiplayer | Photon-based room flow, remote avatar state, host-authoritative outcomes |
-| QA | PlayMode suites, development-build probes, two-process host/client evidence |
+모든 코드를 혼자 손으로 작성했다고 주장하지 않습니다. 공동 기획, 목표 분해, 기술 방향, AI 결과 검토, 통합과 직접 플레이 검증이 제 기여입니다.
 
-## Start here
+## 가장 먼저 볼 자료
 
-- [Portfolio case studies](PORTFOLIO.md)
-- [Selected source index](SOURCE_INDEX.md)
-- [Class-skill VFX verification](Evidence/CLASS_SKILL_EXTERNAL_VFX_REPORT.md)
-- [Story/co-op final report](Evidence/STORY_COOP_FINAL_REPORT.md)
-- [Co-op regression report](Evidence/COOP_REGRESSION_REPORT.md)
+1. [문제 해결 사례](PORTFOLIO.md)
+2. [선별 소스 안내](SOURCE_INDEX.md)
+3. [클래스 스킬 VFX 검증](Evidence/CLASS_SKILL_EXTERNAL_VFX_REPORT.md)
+4. [스토리·협동 최종 보고서](Evidence/STORY_COOP_FINAL_REPORT.md)
+5. [협동 회귀검증 보고서](Evidence/COOP_REGRESSION_REPORT.md)
 
-### Recommended code tour
+## 추천 코드 7개
 
-1. [MeleeCatCombatRuntime.cs](Source/Classes/MeleeCatCombatRuntime.cs) — combo buffering, shield dash, four skills, arc/sphere/capsule damage
-2. [GunCatCombatRuntime.cs](Source/Classes/GunCatCombatRuntime.cs) — ammo, aiming, pooled projectiles, spin and barrage skills
-3. [BuildingBreakDirector.cs](Source/BuildingBreak/BuildingBreakDirector.cs) — host-driven stage ladder and duplicate-transition guard
-4. [BuildingBreakPlayerProgress.cs](Source/BuildingBreak/BuildingBreakPlayerProgress.cs) — class-isolated upgrades, economy, migration, session-only bombs
-5. [CoopNetworkPlayerAvatar.cs](Source/Coop/CoopNetworkPlayerAvatar.cs) — remote animation, held items, skills, companions, and reliable state repair
-6. [SaveSystem.cs](Source/Core/SaveSystem.cs) — story axes, upgrade migration, equipment, stage and settings persistence
-7. [WeaponAttachmentProfile.cs](Source/Core/WeaponAttachmentProfile.cs) — stable geometry signatures and per-weapon validation records
+| 주제 | 코드 | 면접 포인트 |
+| --- | --- | --- |
+| 근접 전투 | [MeleeCatCombatRuntime.cs](Source/Classes/MeleeCatCombatRuntime.cs) | 콤보 버퍼, 방패 돌진, 호·구·캡슐 판정과 4개 스킬 |
+| 총기 전투 | [GunCatCombatRuntime.cs](Source/Classes/GunCatCombatRuntime.cs) | 탄약·조준, 투사체 풀, 회전·난사 스킬 |
+| 전투 스테이지 | [BuildingBreakDirector.cs](Source/BuildingBreak/BuildingBreakDirector.cs) | 호스트 기반 단계 진행과 중복 전환 방지 |
+| 클래스 성장 | [BuildingBreakPlayerProgress.cs](Source/BuildingBreak/BuildingBreakPlayerProgress.cs) | 클래스별 업그레이드, 경제, 마이그레이션, 세션 아이템 |
+| 원격 아바타 | [CoopNetworkPlayerAvatar.cs](Source/Coop/CoopNetworkPlayerAvatar.cs) | 이동·공격·장비·스킬·동료 상태 동기화와 복구 |
+| 저장 | [SaveSystem.cs](Source/Core/SaveSystem.cs) | 스토리 축, 업그레이드 이전, 장비·스테이지·설정 |
+| 무기 부착 QA | [WeaponAttachmentProfile.cs](Source/Core/WeaponAttachmentProfile.cs) | 지오메트리 서명, 자세·간격 판정과 JSON/CSV 증거 |
 
-## Gameplay evidence
+## 대표 문제 해결
 
-### Cooperative building-destruction room
+### 동시 타격으로 스테이지가 두 번 넘어가는 문제
 
-![Cooperative building-destruction room](media/02_building_break_room.png)
+건물 체력이 동시에 0이 되면 두 요청이 다음 단계 전환을 중복 실행할 수 있었습니다. 호스트만 결과를 확정하고 마지막 적용 단계를 기록해 같은 전환이 두 번 처리되지 않도록 했습니다.
 
-### Melee-class skill composition
+### 원격 플레이어가 위치만 움직이는 문제
 
-![Melee class external VFX](media/03_melee_skill.png)
+멀티플레이 아바타는 좌표만 맞는다고 완성되지 않습니다. Idle, BackWalk, RunForward, Jump, Dash와 공격 변형, 장비, 스킬 효과, 거대화, 동료까지 작은 상태로 직렬화해 원격 프록시에 적용했습니다. 중요한 장비 상태는 신뢰 가능한 복구 경로를 추가했습니다.
 
-### Gun-class barrage
+### 클래스 저장 데이터가 서로 섞이는 문제
 
-![Gun class barrage](media/04_gun_skill.png)
+과거 공용 업그레이드를 클래스별 키로 이전하고, 스토리·협동·장비·설정·세션 전용 폭탄의 저장 경계를 분리했습니다. 파괴적인 테스트 뒤에는 기준값이 확보된 항목만 복원했습니다.
 
-### Battle HUD and skills
+## 플레이 화면
 
-![Building destruction battle HUD](media/05_battle_hud.png)
+| 협동 건물 파괴 방 | 근접 클래스 스킬 |
+| --- | --- |
+| ![협동 건물 파괴 방](media/02_building_break_room.png) | ![근접 클래스 VFX](media/03_melee_skill.png) |
 
-### Authored final-stage boss intro
+| 총기 클래스 난사 | 전투 HUD |
+| --- | --- |
+| ![총기 클래스 난사](media/04_gun_skill.png) | ![건물 파괴 전투 HUD](media/05_battle_hud.png) |
 
-![Stage 6 boss intro](media/06_stage6_boss.png)
+![6스테이지 보스 인트로](media/06_stage6_boss.png)
 
-## Recorded verification
+## 기록된 검증
 
-The included evidence was produced in the original project and is dated; this curated repository is not a runnable Unity checkout.
+- 클래스 스킬 8개: 공개 입력 PlayMode 1/1 Passed, Windows 개발 빌드 오류 0, 독립 실행 검증 Passed
+- 접지·이동: 3개 클래스 Stage 4 스폰·다리 통과, 기록된 최대 지면 오차 0.01m
+- 멀티플레이: 호스트·클라이언트 타이머 일치, 방 재생성·재입장, 기권 결과, 클래스 소개·VFX 검증 기록
+- 스토리 협동: 원격 스킬, 이동 상태, 동시 타격 권한, 롤백, 업그레이드, 스테이지 완료와 강제 종료 복구 실행
 
-- Eight class skills: public-input PlayMode test Passed; Windows development build succeeded with 0 build errors; standalone verifier Passed
-- Grounding and traversal: three classes passed Stage 4 spawn/bridge checks, with maximum recorded ground error of 0.01m
-- Multiplayer: host/client timer agreement, room recreation/rejoin, forfeit outcome, and class-introduction/VFX checks recorded as Passed
-- Story co-op: remote skills, movement states, simultaneous-hit authority, rollback, upgrades, stage completion, forced host/client exit recovery, and multiple resolutions were exercised
+## 실패와 한계도 공개합니다
 
-## Known limitations
+- 2인 실패 결과 화면에서 실제 인원보다 기여 행이 많이 만들어진 하위 검증은 Failed입니다.
+- Stage 4 2인 성능의 1% low가 목표를 충족하지 못해 Failed입니다.
+- 원본 빌드의 비차단 경고를 추가 정리해야 합니다.
+- 선별 소스만으로는 컴파일할 수 없으므로 현재 독립 상태는 NotValidated입니다.
 
-- A dated co-op report found duplicate contribution rows on the failure-result screen. That subcase remains **Failed** in the evidence instead of being hidden.
-- A story co-op performance run recorded poor Stage 4 two-player 1% lows and marked the performance target **Failed**.
-- The original build reports contain non-blocking warnings that still need cleanup.
-- This source selection cannot be compiled alone; current standalone status here is **NotValidated**.
+## 면접에서 나올 수 있는 질문
 
-## Rights and reuse
+- 클래스 세 개를 수치만 다른 스킨이 아니라 다른 플레이 감각으로 만든 방법은?
+- 동시 타격과 중복 단계 전환을 호스트 권한으로 어떻게 막았는가?
+- 원격 아바타에서 반드시 신뢰 가능한 전송이 필요한 상태는 무엇인가?
+- 저장해야 할 값과 한 판에서만 유지할 값을 어떻게 구분했는가?
+- Stage 4 성능 실패를 다음에는 어떤 순서로 프로파일링할 것인가?
+- AI 구현 결과의 합격 여부를 사람이 어떻게 판단했는가?
 
-Screenshots contain licensed third-party models, effects, fonts, and environment assets. Their original files, Photon/PlayFab settings, local packages, builds, and credentials are excluded. See [RIGHTS.md](RIGHTS.md).
+## 권리와 재사용
+
+스크린샷에는 라이선스가 있는 모델, 효과, 폰트와 환경 에셋이 보일 수 있습니다. 원본 파일, Photon·PlayFab 설정, 로컬 패키지, 빌드와 인증정보는 제외했습니다. [RIGHTS.md](RIGHTS.md)를 참고해 주세요.
+

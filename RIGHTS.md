@@ -1,10 +1,8 @@
-# Rights and redistribution notice
+# 권리 및 재배포 안내
 
-This repository is a public portfolio excerpt, not an open-source release.
+- 공개한 C# 파일과 테스트는 비공개 Unity 프로젝트에서 포트폴리오 검토용으로 선별했습니다.
+- 스크린샷에는 라이선스가 있는 제3자 모델, 효과, 폰트와 환경 에셋이 보일 수 있으나 원본 파일은 포함하지 않았습니다.
+- Photon·PlayFab 설정, 인증정보, 로컬 패키지, 생성 빌드, 캐시와 대용량 검증 자료는 제외했습니다.
+- 코드와 문서의 권리는 각각의 권리자에게 있으며 저장소 전체에 일괄적인 오픈소스 라이선스를 부여하지 않습니다.
+- 공개 목적은 채용 검토이며 제3자 에셋의 소유권을 주장하거나 재배포하는 것이 아닙니다.
 
-- No license is granted to copy, redistribute, or commercially reuse the source code or documents without permission from the applicable rights holder.
-- Screenshots may contain licensed third-party art, models, animations, fonts, audio-related branding, or visual effects used by the private Unity project.
-- Original third-party source assets, Photon/PlayFab configuration, local packages, executables, logs, and credentials are intentionally excluded.
-- The included reports preserve attribution notes for external VFX sources where applicable.
-
-If a rights holder identifies material that should not appear in this portfolio excerpt, it should be removed promptly.
