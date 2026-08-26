@@ -1,0 +1,72 @@
+{
+  "validationId": "CLASS_FIX_32",
+  "project": "냥발스럽게",
+  "unityVersion": "6000.3.6f1",
+  "validatedAt": "2026-08-25T19:01:50+09:00",
+  "status": "Passed",
+  "items": [
+    {
+      "id": 1,
+      "request": "GunCatAmmoDropService displays the destroyed object as a floating 3D pickup with a visible name",
+      "status": "Passed",
+      "evidence": [
+        "ValidationReports/ClassFix32/Stage4GroundBridgeAmmo/gun_ammo_destroyed_object_3d.png"
+      ]
+    },
+    {
+      "id": 2,
+      "request": "Basic, Melee, and Gun classes start grounded during the Stage 4 intro",
+      "status": "Passed",
+      "maximumBodyGroundErrorMeters": 0.01,
+      "maximumVisualFootGroundErrorMeters": 0.01,
+      "evidence": [
+        "ValidationReports/ClassFix32/Stage4GroundBridgeAmmo/stage4_intro_ground.csv",
+        "ValidationReports/ClassFix32/Stage4GroundBridgeAmmo/intro_ground_basic_closeup.png",
+        "ValidationReports/ClassFix32/Stage4GroundBridgeAmmo/intro_ground_melee_closeup.png",
+        "ValidationReports/ClassFix32/Stage4GroundBridgeAmmo/intro_ground_gun_closeup.png"
+      ]
+    },
+    {
+      "id": 3,
+      "request": "All three classes cross RightUpperRoad to LeftUpperRoad continuously without jumping",
+      "status": "Passed",
+      "classes": ["Basic", "Melee", "Gun"],
+      "bridge": "CheonggyeBridge_3",
+      "maximumGroundErrorMeters": 0.01,
+      "evidence": [
+        "ValidationReports/ClassFix32/Stage4GroundBridgeAmmo/stage4_bridge_traversal.csv",
+        "ValidationReports/ClassFix32/Stage4GroundBridgeAmmo/bridge_basic_start.png",
+        "ValidationReports/ClassFix32/Stage4GroundBridgeAmmo/bridge_basic_mid.png",
+        "ValidationReports/ClassFix32/Stage4GroundBridgeAmmo/bridge_basic_end.png",
+        "ValidationReports/ClassFix32/Stage4GroundBridgeAmmo/bridge_melee_start.png",
+        "ValidationReports/ClassFix32/Stage4GroundBridgeAmmo/bridge_melee_mid.png",
+        "ValidationReports/ClassFix32/Stage4GroundBridgeAmmo/bridge_melee_end.png",
+        "ValidationReports/ClassFix32/Stage4GroundBridgeAmmo/bridge_gun_start.png",
+        "ValidationReports/ClassFix32/Stage4GroundBridgeAmmo/bridge_gun_mid.png",
+        "ValidationReports/ClassFix32/Stage4GroundBridgeAmmo/bridge_gun_end.png"
+      ]
+    }
+  ],
+  "automatedTests": {
+    "mode": "PlayMode",
+    "suite": "Stage4ClassGroundBridgeAmmoDropPlayModeTests",
+    "jobId": "1529965f2eac4b1c8ee28690a1d843aa",
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 40.9125289
+  },
+  "unityConsole": {
+    "errorsAfterFinalRun": 0
+  },
+  "windowsDevelopmentBuild": {
+    "jobId": "build-f5be578efc",
+    "status": "Succeeded",
+    "errors": 0,
+    "warnings": 169,
+    "durationSeconds": 93.8526374,
+    "reportedTotalSizeMB": 4684.43,
+    "executable": "Builds/ClassFix32_Final/냥발스럽게.exe"
+  }
+}

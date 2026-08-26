@@ -1,0 +1,21 @@
+{
+  "status": "Passed",
+  "windowsBuild": "Builds/ClassFix31_Final/CatDream.exe",
+  "windowsBuildJob": "build-6dbe7e2f3d",
+  "windowsBuildErrors": 0,
+  "networkRun": "ValidationReports/ClassFix31/BuildNetwork_20260825_180202",
+  "timerValidationMetric": "rendered integer seconds",
+  "timerDisplayedDeltaSeconds": 0,
+  "hostDisplayedSeconds": 329,
+  "clientDisplayedSeconds": 329,
+  "responsiveGaugeWidth": 800.0,
+  "canvasReferenceWidth": 1920.0,
+  "multiplayerHouseButtonHidden": true,
+  "clientForfeitOutcome": "승리",
+  "sameRoomRecreatedAndRejoined": true,
+  "videoBuildReport": "ValidationReports/ClassFix31/VideoBuild_20260825_170845/class_introduction_video_build_report.json",
+  "videoStatus": "Passed",
+  "vfxBuildReport": "ValidationReports/ClassFix31/VfxBuild_20260825_172913/skill_vfx_build_report.json",
+  "vfxStatus": "Passed",
+  "blackSpriteRectanglesObserved": false
+}
