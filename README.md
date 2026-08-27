@@ -2,6 +2,12 @@
 
 > Unity 6 고양이 파괴 액션 · 3개 클래스 · 스토리·협동 모드 · 직접 플레이 QA
 
+[![Unity](https://img.shields.io/badge/Unity-6000.3.6f1-222222?logo=unity)](https://unity.com/)
+[![C%23](https://img.shields.io/badge/C%23-Combat-512BD4?logo=csharp)](Source)
+[![Photon](https://img.shields.io/badge/Multiplayer-Photon-2563EB)](Source/Coop)
+[![PlayFab](https://img.shields.io/badge/Backend-PlayFab-00A4EF)](PORTFOLIO.md)
+[![QA](https://img.shields.io/badge/QA-Playtested-1F8A70)](Evidence)
+
 ![냥발스럽게 타이틀 화면](media/01_title.png)
 
 냥발스럽게는 고양이가 서울형 스테이지의 오브젝트와 건물을 파괴하며 성장하는 액션 프로토타입입니다. 3개 클래스, 스토리 진행, 업그레이드와 저장, 동료, 협동 건물 파괴 모드를 결합했습니다.
