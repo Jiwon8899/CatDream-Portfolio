@@ -1,6 +1,6 @@
 # 선별 소스 안내
 
-원본 프로젝트에서 면접 코드 리뷰 가치가 높은 파일을 선별했습니다. 이 저장소는 독립 빌드가 아니라 코드 검토용입니다.
+원본 프로젝트에서 핵심 설계가 드러나는 파일을 선별했습니다. 이 저장소는 독립 빌드가 아니라 코드 검토용입니다.
 
 | 영역 | 파일 | 확인할 내용 |
 | --- | --- | --- |
@@ -20,7 +20,7 @@
 | 이동 QA | [Stage4ClassGroundBridgeAmmoDropPlayModeTests.cs](Tests/PlayMode/Stage4ClassGroundBridgeAmmoDropPlayModeTests.cs) | 3개 클래스 접지와 다리 이동 |
 | 입력·성장 QA | [ClassProgressionAndInputPlayModeTests.cs](Tests/PlayMode/ClassProgressionAndInputPlayModeTests.cs) | 클래스 분리, 성장, 방패 입력, 줍기와 슬라이더 |
 
-## 면접관용 10분 검토 동선
+## 10분 코드 확인 경로
 
 1. README의 1분 요약과 실패 공개를 확인합니다.
 2. MeleeCatCombatRuntime.cs와 GunCatCombatRuntime.cs를 비교합니다.
@@ -34,4 +34,3 @@
 - 호스트만 스테이지 결과를 확정하도록 만든 이유
 - 원격 표현에서 연속 상태와 이벤트 상태를 구분하는 방법
 - 클래스별 저장키 마이그레이션과 롤백 전략
-
