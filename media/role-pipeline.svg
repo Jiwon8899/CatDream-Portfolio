@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="360" viewBox="0 0 1400 360" role="img" aria-labelledby="title desc">
+  <title id="title">냥발스럽게 프로젝트 역할 흐름</title>
+  <desc id="desc">공동 기획에서 목표 설계, AI 구현 지휘, Unity 통합, 직접 QA, 재검증으로 이어지는 역할 흐름</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#1f2937"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect width="1400" height="360" rx="24" fill="url(#bg)"/>
+  <rect x="42" y="36" width="9" height="52" rx="4.5" fill="url(#accent)"/>
+  <text x="72" y="63" fill="#f8fafc" font-size="28" font-weight="700" font-family="Pretendard, 'Noto Sans KR', Arial, sans-serif">나의 역할 · 아이디어를 플레이 가능한 결과로</text>
+  <text x="72" y="88" fill="#94a3b8" font-size="15" font-family="Pretendard, 'Noto Sans KR', Arial, sans-serif">기획 기여 약 50% · 구현 속도는 AI로 높이고 방향·통합·검증은 직접 책임</text>
+
+  <g filter="url(#shadow)" font-family="Pretendard, 'Noto Sans KR', Arial, sans-serif">
+    <g transform="translate(42 130)">
+      <rect width="190" height="145" rx="18" fill="#312e81" stroke="#6366f1" stroke-width="2"/>
+      <circle cx="30" cy="31" r="16" fill="#6366f1"/>
+      <text x="30" y="37" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">1</text>
+      <text x="20" y="70" fill="#fff" font-size="21" font-weight="700">공동 기획 50%</text>
+      <text x="20" y="102" fill="#c7d2fe" font-size="15">파괴 루프 · 클래스</text>
+      <text x="20" y="126" fill="#c7d2fe" font-size="15">서울 스테이지 · 협동</text>
+    </g>
+
+    <g transform="translate(268 130)">
+      <rect width="190" height="145" rx="18" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+      <circle cx="30" cy="31" r="16" fill="#3b82f6"/>
+      <text x="30" y="37" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">2</text>
+      <text x="20" y="70" fill="#fff" font-size="21" font-weight="700">목표 설계</text>
+      <text x="20" y="102" fill="#bfdbfe" font-size="15">기능 분해 · 정상 조작</text>
+      <text x="20" y="126" fill="#bfdbfe" font-size="15">관찰 가능한 합격 조건</text>
+    </g>
+
+    <g transform="translate(494 130)">
+      <rect width="190" height="145" rx="18" fill="#164e63" stroke="#06b6d4" stroke-width="2"/>
+      <circle cx="30" cy="31" r="16" fill="#06b6d4"/>
+      <text x="30" y="37" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">3</text>
+      <text x="20" y="70" fill="#fff" font-size="21" font-weight="700">AI 구현 지휘</text>
+      <text x="20" y="102" fill="#a5f3fc" font-size="15">작업 범위 · 우선순위</text>
+      <text x="20" y="126" fill="#a5f3fc" font-size="15">구현 결과 검토</text>
+    </g>
+
+    <g transform="translate(720 130)">
+      <rect width="190" height="145" rx="18" fill="#134e4a" stroke="#14b8a6" stroke-width="2"/>
+      <circle cx="30" cy="31" r="16" fill="#14b8a6"/>
+      <text x="30" y="37" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">4</text>
+      <text x="20" y="70" fill="#fff" font-size="21" font-weight="700">Unity 통합</text>
+      <text x="20" y="102" fill="#99f6e4" font-size="15">시스템 연결 · 영향 확인</text>
+      <text x="20" y="126" fill="#99f6e4" font-size="15">기술 방향 판단</text>
+    </g>
+
+    <g transform="translate(946 130)">
+      <rect width="190" height="145" rx="18" fill="#365314" stroke="#84cc16" stroke-width="2"/>
+      <circle cx="30" cy="31" r="16" fill="#84cc16"/>
+      <text x="30" y="37" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">5</text>
+      <text x="20" y="70" fill="#fff" font-size="21" font-weight="700">직접 플레이 QA</text>
+      <text x="20" y="102" fill="#d9f99d" font-size="15">2프로세스 · 로그</text>
+      <text x="20" y="126" fill="#d9f99d" font-size="15">입력 · 화면 · 수치 비교</text>
+    </g>
+
+    <g transform="translate(1172 130)">
+      <rect width="186" height="145" rx="18" fill="#713f12" stroke="#f59e0b" stroke-width="2"/>
+      <circle cx="30" cy="31" r="16" fill="#f59e0b"/>
+      <text x="30" y="37" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">6</text>
+      <text x="20" y="70" fill="#fff" font-size="21" font-weight="700">재검증</text>
+      <text x="20" y="102" fill="#fde68a" font-size="15">실패 재현 · 수정 확인</text>
+      <text x="20" y="126" fill="#fde68a" font-size="15">같은 경로 회귀검증</text>
+    </g>
+  </g>
+
+  <g fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)">
+    <path d="M235 202 H258"/>
+    <path d="M461 202 H484"/>
+    <path d="M687 202 H710"/>
+    <path d="M913 202 H936"/>
+    <path d="M1139 202 H1162"/>
+  </g>
+
+  <rect x="42" y="302" width="1316" height="1" fill="#334155"/>
+  <text x="700" y="332" text-anchor="middle" fill="#cbd5e1" font-size="16" font-family="Pretendard, 'Noto Sans KR', Arial, sans-serif">핵심 기여: 공동 기획 · 목표 분해 · 기술 판단 · 시스템 통합 · 직접 플레이 검증</text>
+</svg>
